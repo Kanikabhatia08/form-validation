@@ -45,6 +45,9 @@ function Form() {
         if(inputValues.gender.length == 0){
             errors.gender = "Choose your gender"
         }
+        if(inputValues.country.length == 0){
+            errors.country = "Choose your country"
+        }
         if(inputValues.state.length == 0){
             errors.state = "state cannot be empty"
         }
@@ -72,167 +75,197 @@ function Form() {
 
 
     return (
-    <div className='w-[70%] justify-center mx-auto'>
+    <div className='w-[35%] my-20 border-[1px] border-[#1D24CA] py-5 px-7 rounded-[50px] justify-center mx-auto'>
         {Object.keys(errors).length === 0 && submitting ? (
     <span className="text-green-500 text-sm">Successfully submitted ✓</span>
     ) : null}
-        <form onSubmit={submitHandler} className='grid grid-cols-2'>
-            <div>
-            <label>Name</label><br/>
-            <input type='text'
-                name='name'
-                value={formData.name}
-                className='outline m-2'
-                onChange={changeHandler}
-            /><br/>
-            {errors.name ? (
-                <p className="text-red-600 text-sm">
-                    Name cannot be empty
-                </p>
-                ) : null}
-
-            <label>Phone</label><br/>
-            <input type='number'
-                name='phone'
-                value={formData.phone}
-                className='outline m-2'
-                onChange={changeHandler}
-            /><br/>
-            {errors.phone ? (
-                <p className="text-red-600 text-sm">
-                    Incorrect Phone number
-                </p>
-                ) : null}
-
-            <fieldset>
-                <legend>Gender</legend>
+    
+    <h1 className='text-4xl text-center font-semibold text-[#201658]'>Form Validation</h1>
+        <form onSubmit={submitHandler} className='mx-auto my-4 gap-5 justify-center flex flex-col'>
+            
+            <div className='justify-between flex'>
+                <label className='text-xl font-semibold text-[#1D24CA]'>Name</label>
+                <input type='text'
+                    name='name'
+                    value={formData.name}
+                    placeholder='Enter Name*'
+                    className='border-[#98ABEE] px-3 rounded-md border-2'
+                    onChange={changeHandler}
+                />
                 
-                <input
-                    type='radio'
-                    id='male'
-                    name='gender'
-                    value='male'
-                    onChange={changeHandler}
-                />
-                <label htmlFor='male'>Male</label><br/>
-
-                <input
-                    type='radio'
-                    id='female'
-                    name='gender'
-                    value='female'
-                    
-                    onChange={changeHandler}
-                />
-                <label htmlFor='female'>Female</label><br/>
-
-
-                <input
-                    type='radio'
-                    id='others'
-                    name='gender'
-                    value='others'
-                    onChange={changeHandler}
-                />
-                <label htmlFor='others'>Others</label><br/>
-                {errors.gender ? (
-                <p className="text-red-600 text-sm">
-                    Choose your gender
-                </p>
-                ) : null}
-
-            </fieldset><br/>
-
-            <label htmlFor='department'>Department  </label><br/>
-            <select 
-                id='department'
-                name='department'
-                value={formData.department}
-                onChange={changeHandler}
-                className='outline m-2'>
-                <option>OS</option>
-                <option>Automation</option>
-                <option>Design</option>
-                <option>Cloud</option>
-            </select><br/>
-            {errors.department ? (
-                <p className="text-red-600 text-sm">
-                    Choose your department
-                </p>
-                ) : null}
-
             </div>
-            <div>
-            <label>Email</label><br/>
-            <input type='email'
-                name='email'
-                value={formData.email}
-                className='outline m-2'
-                onChange={changeHandler}
-            /><br/>
-            {errors.email ? (
-                <p className="text-red-600 text-sm">
-                    Email should be at least 15 characters long
-                </p>
-                ) : null}
-
-            <label>Password</label><br/>
-            <input type='password'
-                name='password'
-                value={formData.password}
-                className='outline m-2'
-                onChange={changeHandler}
-            /><br/>
-            {errors.password ? (
-            <p className="text-red-600 text-sm">
-                Password should be at least 5 characters long
-            </p>
+            {errors.name ? (
+                    <p className="text-red-600 -mt-4 ml-[165px] text-sm">
+                        Name cannot be empty!
+                    </p>
             ) : null}
             
+            <div className='justify-between flex'>
+                <label className='text-xl font-semibold text-[#1D24CA]'>Phone</label>
+                <input type='tel'
+                    name='phone'
+                    value={formData.phone}
+                    placeholder='Enter Phone No.*'
+                    className='border-[#98ABEE] px-3 rounded-md border-2'
+                    onChange={changeHandler}
+                />
+            </div>
+            {errors.phone ? (
+                    <p className="text-red-600 -mt-4 ml-[165px] text-sm">
+                        Incorrect Phone number!
+                    </p>
+            ) : null}
+            
+            <fieldset className='justify-between '>
+                <legend className='text-xl font-semibold text-[#1D24CA]'>Gender</legend>
+                <div className='-mt-7'>
+                    <input
+                        type='radio'
+                        id='male'
+                        name='gender'
+                        value='male'
+                        className='ml-40'
+                        onChange={changeHandler}
+                    />
+                    <label className='text-lg text-[#1D24CA] pr-6 pl-1' htmlFor='male'>Male</label>
 
-            <label htmlFor='country'>Country  </label><br/>
-            <select 
-                id='country'
-                name='country'
-                value={formData.country}
-                onChange={changeHandler}
-                className='outline'>
-                <option>India</option>
-                <option>United States</option>
-                <option>Paris</option>
-                <option>Itly</option>
-            </select><br/><br/>
+                    <input
+                        type='radio'
+                        id='female'
+                        name='gender'
+                        value='female'
+                        
+                        onChange={changeHandler}
+                    />
+                    <label className='text-lg text-[#1D24CA] pr-6 pl-1' htmlFor='female'>Female</label>
 
-            <label htmlFor='state'>State / Province </label><br/>
-            <input type='text' placeholder='Punjab' 
-                name='state' id='state'
-                value={formData.state}
-                onChange={changeHandler}
-                className='outline m-2'
-            />
-            <br/>
+
+                    <input
+                        type='radio'
+                        id='others'
+                        name='gender'
+                        value='others'
+                        onChange={changeHandler}
+                    />
+                    <label className='text-lg text-[#1D24CA] pr-5 pl-1' htmlFor='others'>Others</label>
+                </div>
+            </fieldset>
+            {errors.gender ? (
+                <p className="text-red-600 -mt-4 ml-[165px]  text-sm">
+                    Choose your gender!
+                </p>
+            ) : null}
+
+            <div className='justify-between flex'>
+                <label  className='text-xl font-semibold text-[#1D24CA]' htmlFor='department'>Department  </label>
+                <select 
+                    id='department'
+                    name='department'
+                    value={formData.department}
+                    onChange={changeHandler}
+                    placeholder="select department"
+                    className='border-[#98ABEE] px-3 w-[62%] rounded-md border-2'
+                >
+                    <option value="">--select department--</option>
+                    <option value="OS">OS</option>
+                    <option value="Automation">Automation</option>
+                    <option value="Design">Design</option>
+                    <option value="Cloud">Cloud</option>
+                </select>
+            </div>
+            {errors.department ? (
+                <p className="text-red-600 -mt-4 ml-[165px]  text-sm">
+                    Choose your department!
+                </p>
+            ) : null}
+            
+            <div className='justify-between flex'>
+                <label className='text-xl font-semibold text-[#1D24CA]'>Email</label>
+                <input type='email'
+                    name='email'
+                    value={formData.email}
+                    placeholder='Enter Email*'
+                    className='border-[#98ABEE] px-3 rounded-md border-2'
+                    onChange={changeHandler}
+                />
+            </div>
+            {errors.email ? (
+                <p className="text-red-600 -mt-4 ml-[165px]  text-sm">
+                    Email should be at least 15 characters!
+                </p>
+            ) : null}
+
+            <div className='justify-between flex'>
+                <label className='text-xl font-semibold text-[#1D24CA]'>Password</label>
+                <input type='password'
+                    name='password'
+                    value={formData.password}
+                    placeholder='Enter Password*'
+                    className='border-[#98ABEE] px-3 rounded-md border-2'
+                    onChange={changeHandler}
+                />
+            </div>
+            {errors.password ? (
+                <p className="text-red-600 -mt-4 ml-[165px]  text-sm">
+                    Password should be at least 5 characters!
+                </p>
+            ) : null}
+
+            <div className='justify-between flex'>
+                <label className='text-xl font-semibold text-[#1D24CA]' htmlFor='country'>Country  </label>
+                <select 
+                    id='country'
+                    name='country'
+                    value={formData.country}
+                    onChange={changeHandler}
+                    className='border-[#98ABEE] px-3 w-[62%] rounded-md border-2'
+                >
+                    <option value="">--select country--</option>
+                    <option value="India">India</option>
+                    <option value="United States">United States</option>
+                    <option value="Paris">Paris</option>
+                    <option value="Italy">Italy</option>
+                </select>
+            </div>
+            {errors.country ? (
+                <p className="text-red-600 -mt-4 ml-[165px]  text-sm">
+                    Choose your country!
+                </p>
+            ) : null}
+
+            <div className='justify-between flex'>
+                <label className='text-xl font-semibold text-[#1D24CA]' htmlFor='state'>State / Province </label>
+                <input type='text' 
+                    placeholder='Enter State*' 
+                    name='state' id='state'
+                    value={formData.state}
+                    onChange={changeHandler}
+                    className='border-[#98ABEE] px-3 rounded-md border-2'
+                />
+
+            </div>
             {errors.state ? (
-                <p className="text-red-600 text-sm">
-                    State cannot be empty
+                <p className="text-red-600 -mt-4 ml-[165px]  text-sm">
+                    State cannot be empty!
                 </p>
-                ) : null}
+            ) : null}
 
-            <label htmlFor='city'>City  </label><br/>
-            <input type='text' placeholder='Mohali' 
-                name='city' id='city'
-                value={formData.city}
-                onChange={changeHandler}
-                className='outline m-2'
-            />
-            <br/>
+            <div className='justify-between flex'>
+                <label className='text-xl font-semibold text-[#1D24CA]' htmlFor='city'>City  </label>
+                <input type='text' placeholder='Enter City*' 
+                    name='city' id='city'
+                    value={formData.city}
+                    onChange={changeHandler}
+                    className='border-[#98ABEE] px-3 rounded-md border-2'
+                />
+            </div>
             {errors.city ? (
-                <p className="text-red-600 text-sm">
-                    CIty cannot be empty
+                <p className="text-red-600 -mt-4 ml-[165px]  text-sm">
+                    CIty cannot be empty!
                 </p>
-                ) : null}
-
-            </div><br/>
-        <button className='bg-blue-500 text-white mx-auto right-[60%] font-bold rounded-lg py-2 px-4'>Save</button>
+            ) : null}
+            
+            <button className='bg-blue-500 text-white font-bold rounded-lg my-3 w-[50%] mx-auto py-2 px-4'>Save</button>
 
         </form>
     </div>

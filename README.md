@@ -4,3 +4,6 @@
 - Validating the form by Formik (FormLibrary.jsx)
 
 # Snapshot of Form.jsx
+![snapshot](form.png)
+
+# Snapshot of Form

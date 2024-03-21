@@ -1,6 +1,6 @@
 import "./App.css";
 import Form from "./components/Form";
-import FormLibrary from "./components/FormLibrary";
+import Formik from "./components/Formik";
 
 function App() {
 
@@ -12,7 +12,7 @@ function App() {
       </div> */}
 
       <div>
-        <FormLibrary/> 
+        <Formik/> 
       </div>
 
     </div>
